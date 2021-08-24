@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Register</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<a href="http://127.0.0.1:5000/customers">Back</a>
+		</div>
+		<div class="register">
+			<h1>Sign up</h1>
+			<div class="form-group ">
+					{% with messages = get_flashed_messages(with_categories=true)  %}
+					{% if messages %}
+					{% for category, message in messages %}
+					<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+					  <span>{{ message }}</span>
+					  <a><button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					  </button>
+					</div>
+					{% endfor %}
+					{% endif %}
+					{% endwith %}
+			<form action="{{ url_for('register') }}" method="post">
+				
+				<input type="text" class="form-control" name="company_name" placeholder="Company name" id="company_name">
+				
+				<input type="text" class="form-control" name="contact_name" placeholder="Contact name" id="contact_name">
+				
+				<input type="text" class="form-control" name="contact_mail" placeholder="Contact mail" id="contact_mail">
+				
+				<input type="text" class="form-control" name="mail_domain" placeholder="Mail domain" id="mail_domain">
+				
+				<select type="drop" class="form-control" name="identity" placeholder="Identity" id="identity">
+				<option value="">Identity</option>
+				<option value="Active Directory">Active Directory</option>
+				<option value="Azure AD/Office365">Azure AD/Office365</option>
+				<option value="Microsoft ADFS">Microsoft ADFS</option>
+				<option value="Google Apps">Google Apps</option>
+				<option value="Custom Oauth2">Custom Oauth2</option>
+				</select>
+				
+				<input type="text" class="form-control"name="device_number" placeholder="Device number" id="device_number">
+				
+				<textarea type="textarea" name="other" placeholder="Other" id="other"></textarea>
+				
+				<input type="submit" value="Sign up" name="">
+			
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        th, td {
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even){background-color: #f2f2f2}
+        
+        th {
+          background-color: #2868c7;
+          color: white;
+        }
+        </style>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Company name</th>
+            <th scope="col">Contact name</th>
+            <th scope="col">Contact mail</th>
+            <th scope="col">Mail domain</th>
+            <th scope="col">Identity</th>
+            <th scope="col">Device number</th>
+            <th scope="col">Other</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+          {% for data in data %}
+          <tr>
+          <td>{{data.company_name}}
+          </td>
+          <td>{{data.contact_name}}
+          </td>
+          <td>{{data.contact_mail}}
+          </td>
+          <td>{{data.mail_domain}}
+          </td>
+          <td>{{data.identity}}
+        </td>
+        <td>{{data.device_number}}
+        </td>
+        <td>{{data.other}}
+        </td>
+        <td>
+          <form action="{{url_for('delete', id=data.id)}}"
+              method="post">
+              <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td>
+          </tr>
+          {% endfor %}
+      </table>
+      <p><a href="http://127.0.0.1:5000/customers/new">New customer</a></p>
+
+</body>
+</html>
